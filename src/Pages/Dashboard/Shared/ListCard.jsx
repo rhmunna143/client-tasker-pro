@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import useAllTasks from "../../../Hooks/useAllTasks";
 import UpdateField from "../UpdateTask/UpdateField";
-import { useEffect, useState } from "react";
+import { CiStar } from "react-icons/ci";
 
 
 const ListCard = ({ task }) => {
@@ -54,12 +54,49 @@ const ListCard = ({ task }) => {
                     toast.error(err.message)
                 })
         }
-
-
-        console.log(updateStatus);
     }
 
+    const handleImportant = (e) => {
+        e.preventDefault();
 
+        const updateStatus = e.target.checked;
+
+        if (updateStatus === true) {
+            const send = {
+                priority: "high"
+            }
+
+            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+                .then(res => {
+                    if (res.data._id) {
+                        refetch()
+                        return toast.success("Task important set success.")
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    toast.error(err.message)
+                })
+        }
+
+        if (updateStatus === false) {
+            const send = {
+                priority: "low"
+            }
+
+            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+                .then(res => {
+                    if (res.data._id) {
+                        refetch()
+                        return toast.success("Task low priority has set.")
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    toast.error(err.message)
+                })
+        }
+    }
 
     const handleDelete = (id) => {
         swal({
@@ -113,9 +150,14 @@ const ListCard = ({ task }) => {
                         <h4 className="mt-2 text-sm text-slate-500">{task.deadline}</h4>
                     </div>
                 </div>
+
                 <div className="flex flex-col gap-4">
                     <button onClick={() => document.getElementById(`${task._id}`).showModal()} className="btn btn-danger text-blue-700 font-medium btn-xs"><FaRegEdit /></button>
+
                     <button onClick={() => handleDelete(task._id)} className="btn btn-danger text-red-700 font-medium btn-xs"><MdDeleteOutline /></button>
+
+                    <input onChange={handleImportant} type="checkbox" defaultChecked={task.priority !== "high" ? false : true} className={`mask btn btn-xs mask-star-2 ${task.priority === "high" ? "bg-blue-600" : "bg-slate-400"}`} />
+
                 </div>
             </div>
 

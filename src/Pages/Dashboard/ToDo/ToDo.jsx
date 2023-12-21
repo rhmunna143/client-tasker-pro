@@ -1,11 +1,8 @@
 import useToDoFilter from "../../../Hooks/useToDoFilter";
 import ListCard from "../Shared/ListCard";
 
-
 const ToDo = () => {
-    const { todo } = useToDoFilter()
-
-    console.log(todo);
+    const { todo } = useToDoFilter();
 
     return (
         <div>
