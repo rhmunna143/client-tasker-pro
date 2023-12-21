@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import axios from "axios";
 import toast from "react-hot-toast";
 import useAllTasks from "../../../Hooks/useAllTasks";
+import UpdateField from "../UpdateTask/UpdateField";
 
 
 const ListCard = ({ task }) => {
@@ -68,10 +69,10 @@ const ListCard = ({ task }) => {
             {/* modal codes */}
 
             <dialog id={`${task._id}`} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p>{task._id}</p>
-                    <p className="py-4">Press ESC key or click the button below to close</p>
+                <div className="modal-box text-center">
+                    <h3 className="font-bold text-xl text-center mb-4">Update Task</h3>
+                    <UpdateField task={task} />
+
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}

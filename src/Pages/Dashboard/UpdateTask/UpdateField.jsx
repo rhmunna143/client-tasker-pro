@@ -14,7 +14,6 @@ const UpdateField = ({ task }) => {
     const { refetch } = useAllTasks()
 
     const uid = user.uid;
-    const status = "to-do";
 
     const onSubmit = (data) => {
         const send = {
@@ -22,15 +21,15 @@ const UpdateField = ({ task }) => {
             description: data.description,
             deadline: data.deadline,
             priority,
-            status,
+            status: task.status,
             uid
         }
 
-        axios.post("http://localhost:3000/api/tasks", send)
+        axios.put(`http://localhost:3000/api/tasks/${task._id}`, send)
             .then(res => {
-                if (res.data.insertedId) {
+                if (res.data._id) {
                     refetch()
-                    toast.success("Task added in To-Do list")
+                    toast.success("Task update success.")
                 }
             })
             .catch(err => {
@@ -40,15 +39,17 @@ const UpdateField = ({ task }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="w-80 md:w-[440px] lg:w-3/4 mx-auto bg-white px-4 py-4 md:py-6 lg:py-10 rounded-lg flex flex-col items-center mb-4 md:mb-6 lg:mb-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-80 md:w-[440px] lg:w-3/4 mx-auto bg-white px-4 rounded-lg flex flex-col items-center">
             <div className="flex gap-2 flex-wrap w-fit mx-auto">
-                <div className="flex flex-col gap-2">
-                    <input required type="text" placeholder="Title" {...register("title")} className="bg-transparent border border-blue-500 px-4 py-1 " />
-                    <input required type="text" placeholder="Description" {...register("description")} className="bg-transparent border border-blue-500 px-4 py-1 h-12 mt-[3px]" />
+                <div className="flex flex-col gap-2 w-full">
+                    <input defaultValue={task.title} required type="text" placeholder="Title" {...register("title")} className="bg-transparent border border-blue-500 px-4 py-1 " />
+                    <input defaultValue={task.deadline} required type="date" placeholder="Deadline" {...register("deadline")} className="bg-transparent border border-blue-500 px-4 py-1 w-full" />
+
                 </div>
-                <div className="flex flex-col gap-2">
-                    <input required type="date" placeholder="Deadline" {...register("deadline")} className="bg-transparent border border-blue-500 px-4 py-1" />
-                    <select onChange={(e) => setPriority(e.target.value)} className="select select-primary w-full max-w-xs rounded-none bg-transparent">
+                <div className="flex flex-col gap-2 w-full">
+                    <input defaultValue={task.description} required type="text" placeholder="Description" {...register("description")} className="bg-transparent border border-blue-500 px-4 py-1 h-12 mt-[3px]" />
+
+                    <select defaultValue={task.priority} onChange={(e) => setPriority(e.target.value)} className="select select-primary w-full rounded-none bg-transparent">
                         <option disabled selected>Priority</option>
                         <option value={"low"}>Low</option>
                         <option value={"moderate"}>Moderate</option>
@@ -57,7 +58,7 @@ const UpdateField = ({ task }) => {
                 </div>
             </div>
 
-            <input type="submit" value={"Add Task"} className="btn btn-primary mt-4 btn-sm lg:btn-outline" />
+            <input type="submit" value={"Update Task"} className="btn btn-primary mt-4 btn-sm lg:btn-outline" />
         </form>
     );
 };
