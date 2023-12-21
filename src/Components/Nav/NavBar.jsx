@@ -28,7 +28,7 @@ const NavBar = () => {
                     </ul>
                 </div>
 
-                <Link to={"/"} className="btn btn-ghost text-xl"
+                <Link to={"/"} className="btn logo btn-ghost text-2xl font-bold md:text-4xl"
                 >Tasker Pro</Link>
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AllContextProvider } from "../AllContext/AllContext";
-import ad from "../assets/images/Pastel Feminine Girl Bookmark.gif"
+import ad from "../assets/images/Pastel Feminine Girl Bookmark.gif";
 import InputField from "../Pages/Dashboard/InputTask/InputField";
 import { LuListTodo } from "react-icons/lu";
 import { FcProcess } from "react-icons/fc";
@@ -18,7 +18,7 @@ const DashLayout = () => {
                 <div className="bg-white px-2 py-5 rounded-lg flex flex-col items-center">
                     <div className="logo">
                         <Link to={"/"}>
-                            <h2 className="font-medium text-3xl uppercase text-center">Tasker Pro</h2>
+                            <h2 className="font-bold text-4xl uppercase text-center">Tasker Pro</h2>
                         </Link>
                     </div>
 
