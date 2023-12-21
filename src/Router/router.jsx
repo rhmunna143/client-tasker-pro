@@ -12,11 +12,13 @@ import Ongoing from '../Pages/Dashboard/Ongoing/Ongoing';
 import Completed from '../Pages/Dashboard/Completed/Completed';
 import AllTasks from '../Pages/Dashboard/AllTasks/AllTasks';
 import ImportantTasks from '../Pages/Dashboard/ImportantTasks/ImportantTasks';
+import NotFoundPage from '../Pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        errorElement: <NotFoundPage />,
         children: [
             {
                 path: "/",
