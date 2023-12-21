@@ -3,13 +3,16 @@ import ListCard from "../Shared/ListCard";
 
 const Completed = () => {
     const { completed } = useCompletedFilter()
+
+    const sorted = completed.sort((a, b) => (a.status === 'completed' ? 1 : b.status === 'completed' ? -1 : 0));
+
     return (
         <div>
-            <h2 className="text-2xl font-bold uppercase text-center">completed</h2>
+            <h2 className="text-2xl font-bold uppercase text-center">Completed</h2>
 
             <div className="list grid grid-cols-1 gap-4 w-fit mx-auto my-10">
                 {
-                    completed?.map(item => <ListCard task={item} key={item._id}></ListCard>)
+                    sorted?.map(item => <ListCard task={item} key={item._id}></ListCard>)
                 }
             </div>
         </div>

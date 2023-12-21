@@ -11,6 +11,7 @@ import ToDo from '../Pages/Dashboard/ToDo/ToDo';
 import Ongoing from '../Pages/Dashboard/Ongoing/Ongoing';
 import Completed from '../Pages/Dashboard/Completed/Completed';
 import AllTasks from '../Pages/Dashboard/AllTasks/AllTasks';
+import ImportantTasks from '../Pages/Dashboard/ImportantTasks/ImportantTasks';
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "all-tasks",
                 element: <AllTasks />
+            },
+            {
+                path: "important",
+                element: <ImportantTasks />
             }
         ]
     }

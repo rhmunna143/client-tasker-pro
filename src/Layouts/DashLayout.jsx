@@ -7,6 +7,7 @@ import { LuListTodo } from "react-icons/lu";
 import { FcProcess } from "react-icons/fc";
 import { RiTaskLine } from "react-icons/ri";
 import { SiVirustotal } from "react-icons/si";
+import { MdLabelImportant } from "react-icons/md";
 
 const DashLayout = () => {
     const { user, logout } = useContext(AllContextProvider)
@@ -43,6 +44,10 @@ const DashLayout = () => {
                     <NavLink to={"/dashboard/completed"} className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "active items-center px-4 py-2 bg-blue-600 rounded-md text-white flex gap-2" : "px-4 py-2 bg-gray-100 rounded-md flex gap-2 items-center"
                     }><RiTaskLine />Completed</NavLink>
+
+                    <NavLink to={"/dashboard/important"} className={({ isActive, isPending }) =>
+                        isPending ? "pending" : isActive ? "active items-center px-4 py-2 bg-blue-600 rounded-md text-white flex gap-2" : "px-4 py-2 bg-gray-100 rounded-md flex gap-2 items-center"
+                    }><MdLabelImportant />Important</NavLink>
 
                     <NavLink to={"/dashboard/all-tasks"} className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "active items-center px-4 py-2 bg-blue-600 rounded-md text-white flex gap-2" : "px-4 py-2 bg-gray-100 rounded-md flex gap-2 items-center"
