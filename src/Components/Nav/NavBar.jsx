@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Link, NavLink } from "react-router-dom";
 
 const menus = [
