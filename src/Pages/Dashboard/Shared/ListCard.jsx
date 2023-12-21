@@ -8,10 +8,58 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import useAllTasks from "../../../Hooks/useAllTasks";
 import UpdateField from "../UpdateTask/UpdateField";
+import { useEffect, useState } from "react";
 
 
 const ListCard = ({ task }) => {
     const { refetch } = useAllTasks();
+
+    const handleComplete = (e) => {
+        e.preventDefault()
+
+        const updateStatus = e.target.checked;
+
+        if (updateStatus === true) {
+            const send = {
+                status: "completed"
+            }
+
+            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+                .then(res => {
+                    if (res.data._id) {
+                        refetch()
+                        return toast.success("Task complete success.")
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    toast.error(err.message)
+                })
+        }
+
+        if (updateStatus === false) {
+            const send = {
+                status: "to-do"
+            }
+
+            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+                .then(res => {
+                    if (res.data._id) {
+                        refetch()
+                        return toast.success("Task incomplete, added in To-Do list.")
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    toast.error(err.message)
+                })
+        }
+
+
+        console.log(updateStatus);
+    }
+
+
 
     const handleDelete = (id) => {
         swal({
@@ -49,9 +97,14 @@ const ListCard = ({ task }) => {
     return (
         <div className="bg-white rounded-lg p-4 w-80 md:w-[440px] lg:w-[580px] mx-auto">
             <div className="flex gap-4 items-baseline justify-between">
-                <input className="" type="checkbox" name="action" id="action" />
+                <input onChange={handleComplete} defaultChecked={task.status === "completed" ? true : false} className="" type="checkbox" name="action" id="action" />
                 <div className="desc flex-1">
-                    <h2 className="font-bold text-xl text-blue-600 capitalize">{task.title}</h2>
+                    {task.status === "completed"
+                        ?
+                        <del><h2 className="font-bold text-xl text-blue-600 capitalize">{task.title}</h2></del>
+                        :
+                        <h2 className="font-bold text-xl text-blue-600 capitalize">{task.title}</h2>
+                    }
                     <p className="font-medium mt-2">{task.description}</p>
 
                     <div className="flex gap-2 items-center">
