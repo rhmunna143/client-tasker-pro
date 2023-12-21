@@ -13,7 +13,7 @@ const DashLayout = () => {
     return (
         <div className="flex flex-col md:flex-row p-4 gap-5">
             <div className="menus w-96 p-2 bg-gray-100 rounded-lg flex flex-col gap-4">
-                <div className="bg-white p-2 rounded-lg">
+                <div className="bg-white px-2 py-5 rounded-lg flex flex-col items-center">
                     <div className="logo">
                         <Link to={"/"}>
                             <h2 className="font-medium text-3xl uppercase text-center">Tasker Pro</h2>

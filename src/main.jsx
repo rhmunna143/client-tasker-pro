@@ -6,15 +6,18 @@ import { RouterProvider } from 'react-router-dom'
 import router from './Router/router'
 import ContextProvider from './AllContext/AllContext'
 import { Toaster } from 'react-hot-toast'
+import QueryProvider from './AllContext/QueryProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ContextProvider>
-      <RouterProvider router={router} />
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
+      <QueryProvider>
+        <RouterProvider router={router} />
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
+      </QueryProvider>
     </ContextProvider>
   </React.StrictMode>,
 )

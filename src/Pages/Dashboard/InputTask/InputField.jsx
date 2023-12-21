@@ -1,17 +1,40 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AllContextProvider } from "../../../AllContext/AllContext";
+import axios from "axios";
+import toast from "react-hot-toast";
+import useAllTasks from "../../../Hooks/useAllTasks";
 
 const InputField = () => {
     const [priority, setPriority] = useState("");
     const { register, handleSubmit } = useForm();
     const { user } = useContext(AllContextProvider)
+    const { refetch } = useAllTasks()
 
     const uid = user.uid;
     const status = "to-do";
 
     const onSubmit = (data) => {
-        console.log(data, priority, status, uid)
+        const send = {
+            title: data.title,
+            description: data.description,
+            deadline: data.deadline,
+            priority,
+            status,
+            uid
+        }
+
+        axios.post("http://localhost:3000/api/tasks", send)
+            .then(res => {
+                if (res.data.insertedId) {
+                    refetch()
+                    toast.success("Task added in To-Do list")
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error(err.message)
+            })
     }
 
     return (
