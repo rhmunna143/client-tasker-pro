@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
 
-const RootLayout = () => {
+const DashLayout = () => {
     return (
         <div>
-
-
-            <Outlet />
+            dash
+            <Outlet/>
         </div>
     );
 };
 
-export default RootLayout;
+export default DashLayout;
