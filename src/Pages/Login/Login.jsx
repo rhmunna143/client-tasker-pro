@@ -107,7 +107,7 @@ const Login = () => {
                         <p className="mt-6 flex justify-center   text-sm font-light leading-normal text-inherit antialiased">
                             Don't have an account?
 
-                            <Link to="/registration">
+                            <Link to="/register">
                                 <button className="ml-1 block  text-sm font-bold leading-normal text-blue-500 antialiased hover:text-blue-700">
                                     Register
                                 </button>
