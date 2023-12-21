@@ -10,7 +10,7 @@ export const LoaderComponent = () => {
 };
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading, setPath } = useContext(AllContextProvider)
+    const { user, loading, setPath, log, setLog } = useContext(AllContextProvider)
     const location = useLocation()
     const path = location?.pathname;
 
@@ -23,15 +23,19 @@ const PrivateRoute = ({ children }) => {
         </div>
     }
 
-    if (user) {
+    if (log) {
+        setLog(false)
+        return <Navigate to={"/"} />
+    }
 
-        return children;
+    if (!user) {
+        return <Navigate to="/login" />
     }
 
     return (
-        <div>
-            <Navigate to="/login" />
-        </div>
+        <>
+            {children}
+        </>
     );
 };
 

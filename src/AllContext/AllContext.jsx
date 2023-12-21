@@ -14,6 +14,7 @@ const ContextProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
     const [path, setPath] = useState("")
+    const [log, setLog] = useState(false)
 
     const register = (email, password) => {
         setLoading(true)
@@ -32,7 +33,7 @@ const ContextProvider = ({ children }) => {
 
         signOut(auth).then(() => {
             setSocialUser(null)
-
+            setLog(true)
             toast.success("Logout success! Please login now")
         }).catch((error) => {
             toast.error(error.message)
@@ -88,7 +89,9 @@ const ContextProvider = ({ children }) => {
         loading,
         socialUser,
         path,
-        setPath
+        setPath,
+        log,
+        setLog
     }
 
     return (
