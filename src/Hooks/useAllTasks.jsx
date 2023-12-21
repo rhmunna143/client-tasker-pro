@@ -13,7 +13,7 @@ const useAllTasks = () => {
     const { data, error, isLoading, refetch } = useQuery({
         queryKey: ["data"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:3000/api/tasks")
+            const res = await axios.get("https://server-tasker-pro.vercel.app/api/tasks")
             return res.data
         }
     })

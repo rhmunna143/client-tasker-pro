@@ -24,7 +24,7 @@ const ListCard = ({ task }) => {
                 status: "completed"
             }
 
-            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+            axios.patch(`https://server-tasker-pro.vercel.app/api/tasks/${task._id}`, send)
                 .then(res => {
                     if (res.data._id) {
                         refetch()
@@ -42,7 +42,7 @@ const ListCard = ({ task }) => {
                 status: "to-do"
             }
 
-            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+            axios.patch(`https://server-tasker-pro.vercel.app/api/tasks/${task._id}`, send)
                 .then(res => {
                     if (res.data._id) {
                         refetch()
@@ -66,7 +66,7 @@ const ListCard = ({ task }) => {
                 priority: "high"
             }
 
-            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+            axios.patch(`https://server-tasker-pro.vercel.app/api/tasks/${task._id}`, send)
                 .then(res => {
                     if (res.data._id) {
                         refetch()
@@ -84,7 +84,7 @@ const ListCard = ({ task }) => {
                 priority: "low"
             }
 
-            axios.patch(`http://localhost:3000/api/tasks/${task._id}`, send)
+            axios.patch(`https://server-tasker-pro.vercel.app/api/tasks/${task._id}`, send)
                 .then(res => {
                     if (res.data._id) {
                         refetch()
@@ -108,7 +108,7 @@ const ListCard = ({ task }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`http://localhost:3000/api/tasks/${id}`)
+                    axios.delete(`https://server-tasker-pro.vercel.app/api/tasks/${id}`)
                         .then(res => {
                             if (res.data._id) {
                                 refetch()

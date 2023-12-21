@@ -25,7 +25,7 @@ const UpdateField = ({ task }) => {
             uid
         }
 
-        axios.put(`http://localhost:3000/api/tasks/${task._id}`, send)
+        axios.put(`https://server-tasker-pro.vercel.app/api/tasks/${task._id}`, send)
             .then(res => {
                 if (res.data._id) {
                     refetch()

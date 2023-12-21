@@ -24,7 +24,7 @@ const InputField = () => {
             uid
         }
 
-        axios.post("http://localhost:3000/api/tasks", send)
+        axios.post("https://server-tasker-pro.vercel.app/api/tasks", send)
             .then(res => {
                 if (res.data.insertedId) {
                     refetch()
