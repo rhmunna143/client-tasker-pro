@@ -4,6 +4,7 @@ import { AllContextProvider } from "../../AllContext/AllContext";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { auth } from "../../Config/firebase.config";
+import Continue from "../../Components/Continue";
 
 
 const Register = () => {
@@ -184,8 +185,9 @@ const Register = () => {
                         </Link>
                     </p>
                 </form>
+                <Continue />
             </div>
-            
+
             {
                 regUser && <Navigate to="/login" />
             }
