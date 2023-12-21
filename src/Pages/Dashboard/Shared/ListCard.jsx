@@ -1,12 +1,55 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
+import { MdDeleteOutline } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import swal from "sweetalert";
+import axios from "axios";
+import toast from "react-hot-toast";
+import useAllTasks from "../../../Hooks/useAllTasks";
+
+
 const ListCard = ({ task }) => {
+    const { refetch } = useAllTasks();
+
+    const handleDelete = (id) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover your Task",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete(`http://localhost:3000/api/tasks/${id}`)
+                        .then(res => {
+                            if (res.data._id) {
+                                refetch()
+
+                                swal("Your Task has been deleted!", {
+                                    icon: "success",
+                                });
+                            }
+
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            toast.error(err.message);
+                        })
+
+
+                } else {
+                    swal("Your Task is safe!");
+                }
+            });
+    }
+
     return (
-        <div className="bg-white rounded-lg p-4 w-80">
-            <div className="flex gap-2 items-baseline">
-                <input type="checkbox" name="action" id="action" />
-                <div className="desc">
+        <div className="bg-white rounded-lg p-4 w-80 md:w-[440px] lg:w-[580px] mx-auto">
+            <div className="flex gap-4 items-baseline justify-between">
+                <input className="" type="checkbox" name="action" id="action" />
+                <div className="desc flex-1">
                     <h2 className="font-bold text-xl text-blue-600 capitalize">{task.title}</h2>
                     <p className="font-medium mt-2">{task.description}</p>
 
@@ -16,12 +59,27 @@ const ListCard = ({ task }) => {
                         <h4 className="mt-2 text-sm text-slate-500">{task.deadline}</h4>
                     </div>
                 </div>
-                <div>
-                    <button></button>
-                    <button></button>
+                <div className="flex flex-col gap-4">
+                    <button onClick={() => document.getElementById(`${task._id}`).showModal()} className="btn btn-danger text-blue-700 font-medium btn-xs"><FaRegEdit /></button>
+                    <button onClick={() => handleDelete(task._id)} className="btn btn-danger text-red-700 font-medium btn-xs"><MdDeleteOutline /></button>
                 </div>
             </div>
 
+            {/* modal codes */}
+
+            <dialog id={`${task._id}`} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p>{task._id}</p>
+                    <p className="py-4">Press ESC key or click the button below to close</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
 
         </div>
     );

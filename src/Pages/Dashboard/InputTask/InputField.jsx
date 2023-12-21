@@ -38,15 +38,15 @@ const InputField = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex gap-2 flex-wrap">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-80 md:w-[440px] lg:w-3/4 mx-auto bg-white px-4 py-4 md:py-6 lg:py-10 rounded-lg flex flex-col items-center mb-4 md:mb-6 lg:mb-8">
+            <div className="flex gap-2 flex-wrap w-fit mx-auto">
                 <div className="flex flex-col gap-2">
                     <input required type="text" placeholder="Title" {...register("title")} className="bg-transparent border border-blue-500 px-4 py-1 " />
-                    <input required type="text" placeholder="Description" {...register("description")} className="bg-transparent border border-blue-500 px-4 py-1 h-12 " />
+                    <input required type="text" placeholder="Description" {...register("description")} className="bg-transparent border border-blue-500 px-4 py-1 h-12 mt-[3px]" />
                 </div>
                 <div className="flex flex-col gap-2">
                     <input required type="date" placeholder="Deadline" {...register("deadline")} className="bg-transparent border border-blue-500 px-4 py-1" />
-                    <select onChange={(e) => setPriority(e.target.value)} className="select select-primary w-full max-w-xs rounded-none">
+                    <select onChange={(e) => setPriority(e.target.value)} className="select select-primary w-full max-w-xs rounded-none bg-transparent">
                         <option disabled selected>Priority</option>
                         <option value={"low"}>Low</option>
                         <option value={"moderate"}>Moderate</option>
@@ -55,7 +55,7 @@ const InputField = () => {
                 </div>
             </div>
 
-            <input type="submit" value={"Add Task"} className="btn btn-primary mt-2 btn-sm lg:btn-outline" />
+            <input type="submit" value={"Add Task"} className="btn btn-primary mt-4 btn-sm lg:btn-outline" />
         </form>
     );
 };
