@@ -10,6 +10,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import ToDo from '../Pages/Dashboard/ToDo/ToDo';
 import Ongoing from '../Pages/Dashboard/Ongoing/Ongoing';
 import Completed from '../Pages/Dashboard/Completed/Completed';
+import AllTasks from '../Pages/Dashboard/AllTasks/AllTasks';
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: "completed",
                 element: <Completed />
+            },
+            {
+                path: "all-tasks",
+                element: <AllTasks />
             }
         ]
     }
