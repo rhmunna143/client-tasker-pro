@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AllContextProvider } from "../../AllContext/AllContext";
 
 const menus = [
     { id: 1, name: "Home", link: "/" },
@@ -9,6 +11,8 @@ const menus = [
 ]
 
 const NavBar = () => {
+    const { user, logout } = useContext(AllContextProvider)
+
     return (
         <nav className="navbar bg-base-100">
 
@@ -35,6 +39,12 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                {
+                    user &&
+                    <Link><button onClick={logout} className="btn btn-outline btn-primary mr-5">Logout</button></Link>
+
+                }
+
                 <Link to={"/dashboard/home"} className="btn btn-primary">
                     Let's Explore
                 </Link>
