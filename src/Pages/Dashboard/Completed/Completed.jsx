@@ -8,7 +8,7 @@ const Completed = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold uppercase text-center">Completed</h2>
+            <h2 className="text-2xl font-bold uppercase text-center">Completed tasks</h2>
 
             <div className="list grid grid-cols-1 gap-4 w-fit mx-auto my-10">
                 {
