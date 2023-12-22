@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDrDw-uJGTSqWk5bA_sLBDM3XPDr-2WYjA",
-    authDomain: "tasker-pro1.firebaseapp.com",
-    projectId: "tasker-pro1",
-    storageBucket: "tasker-pro1.appspot.com",
-    messagingSenderId: "255918270902",
-    appId: "1:255918270902:web:d43345dda35332a9c7b917"
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
