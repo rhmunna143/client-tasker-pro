@@ -6,7 +6,7 @@ const ImportantTasks = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold uppercase text-center">Completed</h2>
+            <h2 className="text-2xl font-bold uppercase text-center">Important Tasks</h2>
 
             <div className="list grid grid-cols-1 gap-4 w-fit mx-auto my-10">
                 {
